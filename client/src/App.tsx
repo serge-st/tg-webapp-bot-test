@@ -1,8 +1,16 @@
+import { useEffect } from "react";
 import "./App.css";
 import { useTranslation } from "react-i18next";
 
+const tg = window.Telegram.WebApp;
+
 function App() {
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    tg.ready();
+    console.log(tg);
+  }, []);
 
   const toggleLanguageChange = () => {
     const lng = i18n.language === "en" ? "ru" : "en";
