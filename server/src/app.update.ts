@@ -7,7 +7,18 @@ type TelegrafContext = Scenes.SceneContext;
 export class AppUpdate {
   @Start()
   async start(@Ctx() ctx: TelegrafContext) {
-    await ctx.reply('Welcome');
+    await ctx.reply('Start', {
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: 'Open Web App',
+              web_app: { url: 'NGROK_URL' },
+            },
+          ],
+        ],
+      },
+    });
   }
 
   @Help()
