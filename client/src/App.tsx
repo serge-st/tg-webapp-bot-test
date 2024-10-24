@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     tg.ready();
-    console.log(tg);
+    // console.log(tg);
   }, []);
 
   const toggleLanguageChange = () => {

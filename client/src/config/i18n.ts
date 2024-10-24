@@ -1,39 +1,29 @@
-import i18n from "i18next";
+import i18n, { InitOptions } from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
+import Backend, { ChainedBackendOptions } from "i18next-chained-backend";
+import LocalStorageBackend from "i18next-localstorage-backend";
+import HttpApi from "i18next-http-backend";
 
 i18n
   .use(LanguageDetector)
+  .use(Backend)
   .use(initReactI18next)
   .init({
     supportedLngs: ["en", "ru"],
-    resources: {
-      en: {
-        translation: {
-          Welcome: "Welcome to the app",
-          ToggleLanguage: "Toggle Language",
-          AnotherWebsite: "Open another website (google)",
-          OpenOurChannel: "Open Our Channel @black_triangle_tg",
-          OpenPersonalChat: "Open personal chat with @GreatGuy",
-          OpenArticle: "Open article",
-        },
-      },
-      ru: {
-        translation: {
-          Welcome: "Добро пожаловать в аппликацию",
-          ToggleLanguage: "Переключить язык",
-          AnotherWebsite: "Открыть другой сайт (google)",
-          OpenOurChannel: "Открыть наш канал @black_triangle_tg",
-          OpenPersonalChat: "Открыть личный чат с @GreatGuy",
-          OpenArticle: "Открыть статью",
-        },
-      },
-    },
     fallbackLng: "en",
-
+    debug: import.meta.env.DEV,
+    backend: {
+      backends: [LocalStorageBackend, HttpApi],
+      backendOptions: [
+        {
+          expirationTime: 7 * 24 * 60 * 60 * 1000, // 7 days
+        },
+      ],
+    } as ChainedBackendOptions,
     interpolation: {
       escapeValue: false,
     },
-  });
+  } as InitOptions);
 
 export default i18n;
