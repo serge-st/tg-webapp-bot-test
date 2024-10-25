@@ -14,12 +14,14 @@ const localStorageBackendOptions: LocalStorageBackendOptions = import.meta.env
     }
   : {};
 
+export const supportedLngs: readonly string[] = ["en", "ru"];
+
 i18n
   .use(LanguageDetector)
   .use(Backend)
   .use(initReactI18next)
   .init({
-    supportedLngs: ["en", "ru"],
+    supportedLngs,
     ns: ["core"],
     defaultNS: "core",
     fallbackLng: "en",
