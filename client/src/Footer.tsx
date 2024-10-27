@@ -1,40 +1,40 @@
-import { Suspense } from "react";
-import { useTranslation } from "react-i18next";
+import { Suspense } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const tg = window.Telegram.WebApp;
 
 export const Footer = () => {
-  const { t } = useTranslation("footer");
+  const { t } = useTranslation('footer');
 
   const hangleTgLinkOpen = () => {
-    tg.openTelegramLink("https://t.me/black_triangle_tg");
+    tg.openTelegramLink('https://t.me/black_triangle_tg');
   };
 
   const hangleTgLinkOpen2 = () => {
-    tg.openLink("https://google.com");
+    tg.openLink('https://google.com');
   };
 
   const hangleTgLinkOpen3 = () => {
-    tg.openTelegramLink("https://t.me/Thorstein_W?start=direct");
+    tg.openTelegramLink('https://t.me/Thorstein_W?start=direct');
   };
 
   const handleArticleOpen = () => {
-    tg.openLink("https://telegra.ph/whbfkwjbwu8owefn78y8-05-03");
+    tg.openLink('https://telegra.ph/whbfkwjbwu8owefn78y8-05-03');
   };
   return (
-    <Suspense fallback={"Lasdf"}>
-      <footer className="flex flex-col justify-center items-center gap-4">
+    <Suspense fallback={'Lasdf'}>
+      <footer className="flex flex-col items-center justify-center gap-4">
         <button onClick={hangleTgLinkOpen2} className="underline">
-          {t("AnotherWebsite")}
+          {t('AnotherWebsite')}
         </button>
         <button onClick={hangleTgLinkOpen} className="underline">
-          {t("OpenOurChannel")}
+          {t('OpenOurChannel')}
         </button>
         <button onClick={hangleTgLinkOpen3} className="underline">
-          {t("OpenPersonalChat")}
+          {t('OpenPersonalChat')}
         </button>
         <button onClick={handleArticleOpen} className="underline">
-          {t("OpenArticle")}
+          {t('OpenArticle')}
         </button>
       </footer>
     </Suspense>

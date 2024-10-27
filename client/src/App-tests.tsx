@@ -1,9 +1,9 @@
-import { Suspense, useEffect } from "react";
-import "./App.css";
-import { useTranslation } from "react-i18next";
-import { Footer } from "./Footer";
-import { Button } from "@/components/ui/button";
-import { Header } from "./Header";
+import { Suspense, useEffect } from 'react';
+import './App.css';
+import { useTranslation } from 'react-i18next';
+import { Footer } from './Footer';
+import { Button } from '@/components/ui/button';
+import { Header } from './Header';
 
 const tg = window.Telegram.WebApp;
 
@@ -17,29 +17,23 @@ function App() {
   }, []);
 
   const toggleLanguageChange = () => {
-    const lng = i18n.language === "en" ? "ru" : "en";
+    const lng = i18n.language === 'en' ? 'ru' : 'en';
     i18n.changeLanguage(lng);
   };
 
   const getMainStyle = () => {
     const bgColor = `bg-[white]`;
     const textColor = `text-[black]`;
-    return (
-      "w-full min-h-screen flex flex-col justify-center items-center gap-4" +
-      " " +
-      bgColor +
-      " " +
-      textColor
-    );
+    return 'w-full min-h-screen flex flex-col justify-center items-center gap-4' + ' ' + bgColor + ' ' + textColor;
   };
 
   return (
     <main className={getMainStyle()}>
-      <Suspense fallback={"loading..."}>
+      <Suspense fallback={'loading...'}>
         <Header />
-        {t("Welcome")}
-        <button onClick={toggleLanguageChange} className="px-4 py-2 border">
-          {t("ToggleLanguage")}
+        {t('Welcome')}
+        <button onClick={toggleLanguageChange} className="border px-4 py-2">
+          {t('ToggleLanguage')}
         </button>
         <Button>Click me</Button>
         <Footer />

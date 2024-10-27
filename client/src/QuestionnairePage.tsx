@@ -1,14 +1,12 @@
-import { FC } from "react";
-import { Header } from "./Header";
-import { Footer } from "./Footer";
+import { FC } from 'react';
+import { Header } from './Header';
+import { Footer } from './Footer';
 
 export const QuestionnairePage: FC = () => {
   return (
-    <div className="flex-1 flex flex-col justify-between">
+    <div className="flex flex-1 flex-col justify-between">
       <Header />
-      <main className="flex-auto flex justify-center items-center">
-        main content
-      </main>
+      <main className="flex flex-auto items-center justify-center">main content</main>
       <Footer />
     </div>
   );
