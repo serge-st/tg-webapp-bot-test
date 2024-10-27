@@ -19,10 +19,7 @@ export const LanguageSelector: FC = () => {
   };
 
   return (
-    <>
-      <Label htmlFor="select">
-        <Languages />
-      </Label>
+    <fieldset>
       <Select defaultValue={i18n.language} onValueChange={handleValueChange}>
         <SelectTrigger id="select">
           <SelectValue />
@@ -35,6 +32,6 @@ export const LanguageSelector: FC = () => {
           ))}
         </SelectContent>
       </Select>
-    </>
+    </fieldset>
   );
 };
