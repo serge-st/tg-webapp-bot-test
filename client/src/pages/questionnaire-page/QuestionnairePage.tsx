@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { Header } from '@/widgets/header';
 import { Footer } from '@/widgets/footer';
+import { QuestionBlock } from '@/features/question-block/ui';
 
 export const QuestionnairePage: FC = () => {
   return (
     <div className="flex flex-1 flex-col justify-between">
       <Header />
-      <main className="flex flex-auto items-center justify-center">main content</main>
+      <QuestionBlock />
       <Footer />
     </div>
   );
