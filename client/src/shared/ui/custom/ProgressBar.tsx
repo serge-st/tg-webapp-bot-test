@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Progress } from './components/ui/progress';
-import { Badge } from './components/ui/badge';
+import { Badge } from '@/shared/ui/shadcn/badge';
+import { Progress } from '@/shared/ui/shadcn/progress';
 
 interface ProgressBarProps {
   progress: number;

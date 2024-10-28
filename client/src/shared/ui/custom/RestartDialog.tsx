@@ -8,9 +8,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '@/components/ui/dialog';
+} from '@/shared/ui/shadcn/dialog';
 import { RotateCcw } from 'lucide-react';
-import { Button } from './components/ui/button';
+import { Button } from '@/shared/ui/shadcn/button';
 
 export const RestartDialog: FC = () => {
   return (

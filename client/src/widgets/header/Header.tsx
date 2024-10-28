@@ -1,7 +1,7 @@
+import { LanguageSelector } from '@/shared/ui/custom';
+import { ProgressBar } from '@/shared/ui/custom';
+import { RestartDialog } from '@/shared/ui/custom';
 import { useEffect, useState } from 'react';
-import { LanguageSelector } from './LanguageSelector';
-import { ProgressBar } from './ProgressBar';
-import { RestartDialog } from './RestartDialog';
 
 export function Header() {
   const [progress, setProgress] = useState(0);

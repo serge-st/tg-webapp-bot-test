@@ -1,5 +1,5 @@
 import { FC, Suspense } from 'react';
-import { QuestionnairePage } from './QuestionnairePage';
+import { QuestionnairePage } from '@/pages/questionnaire-page';
 
 export const App: FC = () => {
   return (

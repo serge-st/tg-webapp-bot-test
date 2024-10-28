@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/shared/ui/shadcn/select';
 import { useTranslation } from 'react-i18next';
-import { supportedLngs as i18nSupportedLngs } from './config/i18n';
+import { supportedLngs as i18nSupportedLngs } from '@/shared/config/i18n';
 
 interface LanguageSelectorProps {
   className?: string;

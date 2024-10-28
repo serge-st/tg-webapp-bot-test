@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { Header } from './Header';
-import { Footer } from './Footer';
+import { Header } from '@/widgets/header';
+import { Footer } from '@/widgets/footer';
 
 export const QuestionnairePage: FC = () => {
   return (

@@ -1,9 +1,8 @@
 import { Suspense, useEffect } from 'react';
-import './App.css';
 import { useTranslation } from 'react-i18next';
-import { Footer } from './Footer';
+import { Footer } from '../widgets/footer/Footer';
 import { Button } from '@/components/ui/button';
-import { Header } from './Header';
+import { Header } from '../widgets/header/Header';
 
 const tg = window.Telegram.WebApp;
 
