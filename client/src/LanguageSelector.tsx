@@ -3,7 +3,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useTranslation } from 'react-i18next';
 import { supportedLngs as i18nSupportedLngs } from './config/i18n';
 
-export const LanguageSelector: FC = () => {
+interface LanguageSelectorProps {
+  className?: string;
+}
+
+export const LanguageSelector: FC<LanguageSelectorProps> = ({ className }) => {
   const { i18n } = useTranslation();
 
   const handleValueChange = (value: string) => {
@@ -11,7 +15,7 @@ export const LanguageSelector: FC = () => {
   };
 
   return (
-    <fieldset>
+    <fieldset className={className}>
       <Select defaultValue={i18n.language} onValueChange={handleValueChange}>
         <SelectTrigger id="select">
           <SelectValue />
