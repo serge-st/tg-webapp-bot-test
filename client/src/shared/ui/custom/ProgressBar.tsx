@@ -10,7 +10,7 @@ interface ProgressBarProps {
 
 export const ProgressBar: FC<ProgressBarProps> = ({ progress = 0, currentBlock, totalBlocks }) => {
   return (
-    <div className="flex w-full items-center gap-1 text-xs">
+    <div className="flex w-full max-w-md items-center gap-1 text-xs">
       <Progress value={progress} max={100} />
       <Badge className="text-xs hover:bg-primary/100">
         {currentBlock}/{totalBlocks}
