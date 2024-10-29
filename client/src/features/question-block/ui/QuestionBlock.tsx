@@ -5,16 +5,23 @@ import { useForm } from 'react-hook-form';
 import { Button } from '@/shared/ui/shadcn/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/shadcn/form';
 import { Input } from '@/shared/ui/shadcn/input';
+import { Question } from '@/entities/question/model/types';
 
-export const QuestionBlock: FC = () => {
+interface QuestionBlockProps {
+  question: Question;
+}
+
+export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
+  const { name, responseKey, placeholder } = props.question;
+
   const formSchema = z.object({
-    email: z.string().email(),
+    [responseKey]: z.string().email(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      email: '',
+      [responseKey]: '',
     },
   });
 
@@ -32,12 +39,12 @@ export const QuestionBlock: FC = () => {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
             control={form.control}
-            name="email"
+            name={responseKey}
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-lg">What is your email?</FormLabel>
+                <FormLabel className="text-lg">{name}</FormLabel>
                 <FormControl>
-                  <Input placeholder="Please enter your email" {...field} />
+                  <Input placeholder={placeholder} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
