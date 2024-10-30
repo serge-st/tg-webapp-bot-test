@@ -4,4 +4,5 @@ export const QUESTION_TYPE = {
   EMAIL: 'email',
   BOOLEAN: 'boolean',
   OPTIONS: 'options',
+  PICTURE: 'picture',
 } as const;

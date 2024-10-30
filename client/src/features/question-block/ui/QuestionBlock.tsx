@@ -6,17 +6,25 @@ import { Button } from '@/shared/ui/shadcn/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/shadcn/form';
 import { Input } from '@/shared/ui/shadcn/input';
 import { Question } from '@/entities/question/model/types';
+import { createQuestionSchema } from '@/entities/question/lib';
 
 interface QuestionBlockProps {
   question: Question;
 }
 
 export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
-  const { name, responseKey, placeholder } = props.question;
+  const { name, responseKey, placeholder, type } = props.question;
 
-  const formSchema = z.object({
-    [responseKey]: z.string().email(),
-  });
+  // TODO do a proper input type mapping
+  let inputType: string;
+
+  if (type === 'email' || type === 'text') {
+    inputType = 'text';
+  } else {
+    inputType = 'number';
+  }
+
+  const formSchema = createQuestionSchema(props.question);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,18 +52,22 @@ export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
               <FormItem>
                 <FormLabel className="text-lg">{name}</FormLabel>
                 <FormControl>
-                  <Input placeholder={placeholder} {...field} />
+                  <Input type={inputType} placeholder={placeholder} {...field} />
                 </FormControl>
-                <FormMessage />
+                <div className="h-5">
+                  <FormMessage />
+                </div>
               </FormItem>
             )}
           />
-          <Button type="button" variant="secondary">
-            Back
-          </Button>
-          <Button type="submit" disabled={!form.formState.isValid}>
-            Next
-          </Button>
+          <div className="flex justify-between">
+            <Button type="button" variant="secondary">
+              Back
+            </Button>
+            <Button type="submit" disabled={!form.formState.isValid}>
+              Next
+            </Button>
+          </div>
         </form>
       </Form>
     </main>

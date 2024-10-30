@@ -14,6 +14,12 @@ export const questions: Question[] = [
     placeholder: '180',
   },
   {
+    name: 'How are you, please describe',
+    type: 'text',
+    responseKey: 'how',
+    placeholder: 'free text',
+  },
+  {
     name: 'Do you have any health chronic diseases?',
     type: 'boolean',
     responseKey: 'chronicDiseases',
