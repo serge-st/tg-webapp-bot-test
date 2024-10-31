@@ -7,6 +7,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/shared/ui/shadcn/input';
 import { Question } from '@/entities/question/model/types';
 import { createQuestionSchema } from '@/entities/question/lib';
+import { ToggleGroup, ToggleGroupItem } from '@/shared/ui/shadcn/toggle-group';
 
 interface QuestionBlockProps {
   question: Question;
@@ -20,8 +21,10 @@ export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
 
   if (type === 'email' || type === 'text') {
     inputType = 'text';
-  } else {
+  } else if (type === 'number') {
     inputType = 'number';
+  } else {
+    inputType = 'options';
   }
 
   const formSchema = createQuestionSchema(props.question);
@@ -48,17 +51,40 @@ export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
           <FormField
             control={form.control}
             name={responseKey}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-lg">{name}</FormLabel>
-                <FormControl>
-                  <Input type={inputType} placeholder={placeholder} {...field} />
-                </FormControl>
-                <div className="h-5">
-                  <FormMessage />
-                </div>
-              </FormItem>
-            )}
+            render={({ field }) => {
+              return inputType === 'options' ? (
+                <FormItem>
+                  <FormLabel className="text-lg">{name}</FormLabel>
+                  <FormControl>
+                    <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <ToggleGroupItem value="true">Yes</ToggleGroupItem>
+                        </FormControl>
+                      </FormItem>
+                      <FormItem className="flex items-center space-x-3 space-y-0">
+                        <FormControl>
+                          <ToggleGroupItem value="false">No</ToggleGroupItem>
+                        </FormControl>
+                      </FormItem>
+                    </ToggleGroup>
+                  </FormControl>
+                  <div className="h-5">
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              ) : (
+                <FormItem>
+                  <FormLabel className="text-lg">{name}</FormLabel>
+                  <FormControl>
+                    <Input type={inputType} placeholder={placeholder} {...field} />
+                  </FormControl>
+                  <div className="h-5">
+                    <FormMessage />
+                  </div>
+                </FormItem>
+              );
+            }}
           />
           <div className="flex justify-between">
             <Button type="button" variant="secondary">
