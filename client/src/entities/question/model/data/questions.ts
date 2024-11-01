@@ -18,11 +18,11 @@ export const questions: Question[] = [
   //   type: 'text',
   //   responseKey: 'how',
   // },
-  // {
-  //   name: 'Do you have any health chronic diseases?',
-  //   type: 'boolean',
-  //   responseKey: 'chronicDiseases',
-  // },
+  {
+    name: 'Do you have any health chronic diseases?',
+    type: 'boolean',
+    responseKey: 'chronicDiseases',
+  },
   {
     name: 'What Is Your Goal',
     type: 'options',

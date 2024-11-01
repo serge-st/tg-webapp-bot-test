@@ -9,7 +9,13 @@ interface QuestionBooleanOptionProps {
 
 export const QuestionBooleanOption: FC<QuestionBooleanOptionProps> = ({ field }) => {
   return (
-    <ToggleGroup className="flex" type="single" onValueChange={field.onChange} defaultValue={field.value}>
+    <ToggleGroup
+      className="flex"
+      type="single"
+      variant="outline"
+      onValueChange={field.onChange}
+      defaultValue={field.value}
+    >
       <FormItem>
         <FormControl>
           <ToggleGroupItem value="false">No</ToggleGroupItem>
