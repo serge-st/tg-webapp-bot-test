@@ -7,8 +7,10 @@ export const QUESTION_VALIDATION_MAPPING: Record<MainQuestionType, ZodTypeAny> =
   text: z.string().min(1, { message: 'Text cannot be empty' }),
   email: z.string().email(),
   number: z.coerce.number().positive(),
-  boolean: z.enum(['true', 'false'], {
-    required_error: 'Please select Yes or No',
-    message: 'Please select Yes or No',
-  }),
+  boolean: z
+    .enum(['true', 'false'], {
+      required_error: 'Please select Yes or No',
+      message: 'Please select Yes or No',
+    })
+    .transform((value) => value === 'true'),
 } as const;
