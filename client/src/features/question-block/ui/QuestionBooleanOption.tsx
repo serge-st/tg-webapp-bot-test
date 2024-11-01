@@ -10,7 +10,7 @@ interface QuestionBooleanOptionProps {
 export const QuestionBooleanOption: FC<QuestionBooleanOptionProps> = ({ field }) => {
   return (
     <ToggleGroup
-      className="flex"
+      className="flex gap-4"
       type="single"
       variant="outline"
       onValueChange={field.onChange}
