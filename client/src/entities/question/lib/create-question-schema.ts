@@ -13,7 +13,10 @@ export const createQuestionSchema = (question: Question) => {
       if (!options) {
         throw new Error('Options array is missing');
       }
-      schema = z.enum([options[0], ...options.slice(0)]);
+      schema = z.enum([options[0], ...options.slice(0)], {
+        required_error: 'Please select one of the options',
+        message: 'Please select one of the options',
+      });
       break;
     }
 
