@@ -6,8 +6,8 @@ import { Button } from '@/shared/ui/shadcn/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/shadcn/form';
 import { Question } from '@/entities/question/model/types';
 import { createQuestionSchema } from '@/entities/question/lib';
-import { QuestionInput } from './QuestionInput';
-import { QuestionToggleOptions } from './QuestionToggleOptions';
+import { QuestionInput } from './components';
+import { QuestionToggleOptions } from './components';
 
 interface QuestionBlockProps {
   question: Question;
