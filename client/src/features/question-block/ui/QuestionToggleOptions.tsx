@@ -1,10 +1,9 @@
 import { FC } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
-import { FormItem, FormControl } from '@/shared/ui/shadcn/form';
-import { ToggleGroup, ToggleGroupItem } from '@/shared/ui/shadcn/toggle-group';
+import { FormItem, FormControl, FormLabel } from '@/shared/ui/shadcn/form';
 import { QUESTION_TYPE } from '@/entities/question/model/constants';
-import { cn } from '@/shared/lib/utils';
 import { QuestionBooleanOption } from './QuestionBooleanOption';
+import { RadioGroup, RadioGroupItem } from '@/shared/ui/shadcn/radio-group';
 
 type QuestionToggleOptionsType = Extract<ObjectValues<typeof QUESTION_TYPE>, 'options' | 'boolean'>;
 
@@ -25,22 +24,16 @@ export const QuestionToggleOptions: FC<QuestionToggleOptionsProps> = ({ field, i
     return <QuestionBooleanOption field={field} />;
   } else {
     return (
-      <ToggleGroup
-        className={cn('flex', !isBooleanType && 'flex-col')}
-        type="single"
-        onValueChange={field.onChange}
-        defaultValue={field.value}
-      >
+      <RadioGroup onValueChange={field.onChange} defaultValue={field.value} className="flex flex-col space-y-1">
         {options!.map((option) => (
-          <FormItem key={option} className={cn(!isBooleanType && 'w-full')}>
+          <FormItem key={option} className="flex items-center space-x-3 space-y-0">
             <FormControl>
-              <ToggleGroupItem className={cn(!isBooleanType && 'w-full')} value={option}>
-                {option}
-              </ToggleGroupItem>
+              <RadioGroupItem value={option} className="peer" />
             </FormControl>
+            <FormLabel className="font-normal peer-aria-checked:underline">{option}</FormLabel>
           </FormItem>
         ))}
-      </ToggleGroup>
+      </RadioGroup>
     );
   }
 };
