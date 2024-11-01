@@ -1,33 +1,22 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useMemo } from 'react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/shared/ui/shadcn/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/shared/ui/shadcn/form';
-import { Input } from '@/shared/ui/shadcn/input';
 import { Question } from '@/entities/question/model/types';
 import { createQuestionSchema } from '@/entities/question/lib';
-import { ToggleGroup, ToggleGroupItem } from '@/shared/ui/shadcn/toggle-group';
+import { QuestionInput } from './QuestionInput';
+import { QuestionToggleOptions } from './QuestionToggleOptions';
 
 interface QuestionBlockProps {
   question: Question;
 }
 
 export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
-  const { name, responseKey, placeholder, type } = props.question;
+  const { name, responseKey, placeholder, type, options } = props.question;
 
-  // TODO do a proper input type mapping
-  let inputType: string;
-
-  if (type === 'email' || type === 'text') {
-    inputType = 'text';
-  } else if (type === 'number') {
-    inputType = 'number';
-  } else {
-    inputType = 'options';
-  }
-
-  const formSchema = createQuestionSchema(props.question);
+  const formSchema = useMemo(() => createQuestionSchema(props.question), [name, type]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,6 +33,8 @@ export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
     console.log(form.formState.isValid);
   }, [form.formState.isValid]);
 
+  const isQuestionOptionsInput = type === 'boolean' || type === 'options';
+
   return (
     <main className="flex flex-auto flex-col items-center justify-center">
       <Form {...form}>
@@ -52,32 +43,15 @@ export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
             control={form.control}
             name={responseKey}
             render={({ field }) => {
-              return inputType === 'options' ? (
+              return (
                 <FormItem>
                   <FormLabel className="text-lg">{name}</FormLabel>
                   <FormControl>
-                    <ToggleGroup type="single" onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <ToggleGroupItem value="true">Yes</ToggleGroupItem>
-                        </FormControl>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-3 space-y-0">
-                        <FormControl>
-                          <ToggleGroupItem value="false">No</ToggleGroupItem>
-                        </FormControl>
-                      </FormItem>
-                    </ToggleGroup>
-                  </FormControl>
-                  <div className="h-5">
-                    <FormMessage />
-                  </div>
-                </FormItem>
-              ) : (
-                <FormItem>
-                  <FormLabel className="text-lg">{name}</FormLabel>
-                  <FormControl>
-                    <Input type={inputType} placeholder={placeholder} {...field} />
+                    {isQuestionOptionsInput ? (
+                      <QuestionToggleOptions inputType={type} field={field} options={options} />
+                    ) : (
+                      <QuestionInput inputType={type} placeholder={placeholder} field={field} />
+                    )}
                   </FormControl>
                   <div className="h-5">
                     <FormMessage />

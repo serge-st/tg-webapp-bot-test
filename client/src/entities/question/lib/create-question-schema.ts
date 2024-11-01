@@ -7,6 +7,7 @@ export const createQuestionSchema = (question: Question) => {
 
   let schema: ZodTypeAny;
 
+  console.log('createQuestionSchema', type);
   switch (type) {
     case 'options': {
       if (!options) {
