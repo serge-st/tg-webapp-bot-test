@@ -60,11 +60,11 @@ export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
               );
             }}
           />
-          <div className="flex justify-between">
-            <Button type="button" variant="secondary">
+          <div className="flex gap-4">
+            <Button className="flex-grow" type="button" variant="secondary">
               Back
             </Button>
-            <Button type="submit" disabled={!form.formState.isValid}>
+            <Button className="flex-grow" type="submit" disabled={!form.formState.isValid}>
               Next
             </Button>
           </div>

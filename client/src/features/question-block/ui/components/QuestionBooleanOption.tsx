@@ -16,14 +16,18 @@ export const QuestionBooleanOption: FC<QuestionBooleanOptionProps> = ({ field })
       onValueChange={field.onChange}
       defaultValue={field.value}
     >
-      <FormItem>
+      <FormItem className="flex-grow">
         <FormControl>
-          <ToggleGroupItem value="false">No</ToggleGroupItem>
+          <ToggleGroupItem value="false" className="w-full">
+            No
+          </ToggleGroupItem>
         </FormControl>
       </FormItem>
-      <FormItem>
+      <FormItem className="flex-grow">
         <FormControl>
-          <ToggleGroupItem value="true">Yes</ToggleGroupItem>
+          <ToggleGroupItem value="true" className="w-full">
+            Yes
+          </ToggleGroupItem>
         </FormControl>
       </FormItem>
     </ToggleGroup>
