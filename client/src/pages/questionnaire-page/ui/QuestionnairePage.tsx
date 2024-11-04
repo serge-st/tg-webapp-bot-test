@@ -8,7 +8,7 @@ export const QuestionnairePage: FC = () => {
   return (
     <div className="flex flex-1 flex-col justify-between">
       <Header />
-      <QuestionBlock question={questions[0]} />
+      <QuestionBlock questions={questions} />
       <Footer />
     </div>
   );

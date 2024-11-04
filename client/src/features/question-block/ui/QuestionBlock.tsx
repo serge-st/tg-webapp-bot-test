@@ -8,15 +8,18 @@ import { Question } from '@/entities/question/model/types';
 import { createQuestionSchema } from '@/entities/question/lib';
 import { QuestionInput } from './components';
 import { QuestionToggleOptions } from './components';
+import { questionStorage } from '@/entities/question/model/api/question-storage';
 
 interface QuestionBlockProps {
-  question: Question;
+  questions: Question[];
 }
 
-export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
-  const { name, responseKey, placeholder, type, options } = props.question;
+export const QuestionBlock: FC<QuestionBlockProps> = ({ questions }) => {
+  const answers = questionStorage.get();
 
-  const formSchema = useMemo(() => createQuestionSchema(props.question), [name, type]);
+  const { name, responseKey, placeholder, type, options } = questions[0];
+
+  const formSchema = useMemo(() => createQuestionSchema(questions[0]), [name, type]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -27,6 +30,7 @@ export const QuestionBlock: FC<QuestionBlockProps> = (props) => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    questionStorage.save(values);
   }
 
   useEffect(() => {
